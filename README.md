@@ -1,16 +1,7 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+#MY CODE ISSUES 
+Am creating a blogapp that will allows users to add post, delete their post and I'll also be using news api along with users post on the home page(blog field). Recently i Haven't done any updates with the CRUD part , am still on the SIGNUP page i Haven't implemented my Login Page also for now , basically its only the Signup page that has function for now i.e Its using COCOBASE BAAS Function 
+But am having issue with it , if i signup a new user (am using a try catch) to catch the error , it'll only write successfully even when my data is off which isn't supposed to be offline 
+if i also go to my COCObase project site , I'll be having failed to fetch
+this is my 4th project am creating on it , cause i deleted others that i have there before ,still same 
+in the link field i added my localhost link(#http://localhost5173), still not working, getting failed to fetch 
+but if i create a new project without using it in my code (project id and api key) everything works fine 
