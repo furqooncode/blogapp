@@ -1,59 +1,50 @@
-import { useContext, createContext} from 'react';
-import { useState , useEffect } from 'react'
+import { useContext, createContext } from "react";
+import { useState, useEffect } from "react";
 import db from "../lib/util";
 
 export const Authcontext = createContext();
 
- export function Authprovider({children}){
+export function Authprovider({ children }) {
   const [user, setUser] = useState(null);
-   
-   useEffect(() => {
-    const checkAuth = async () => {
-  const isAuth = await db.isAuthenticated();
-      if (isAuth) setUser(db.user);
-    };
-    checkAuth();
+
+  useEffect(() => {
+    db.auth.initAuth().then(() => {
+      if (db.auth.isAuthenticated()) {
+        setUser(db.auth.getUser());
+      } else {
+        if (user) setUser(null);
+      }
+    });
   }, []);
-  
-  
-  const register = async(userName, Email, PhoneNumber, Password) =>{
-    try{
-     await db.register(userName, Email, PhoneNumber, Password);
-    if(db.isAuthenticated()){
-      setUser(db.user)
-    }
-    }catch(error){
-      console.log(error)
-    }
-  }
-  
-  const Login = async(Email, Password)=>{
-   try{
-      await db.login(Email, Password);
-     if(db.isAuthenticated()){
-       setUser(db.user)
-     }
-   }catch(error){
-     console.log(error)
-   }
-  }
-  
-  const Logout = async () => {
-    try {
-      await db.logout();
-      setUser(null);
-    } catch (error) {
-      console.log(error);
+
+  const register = async (userName, Email, PhoneNumber, Password) => {
+    //  await db.auth.register(userName, Email, PhoneNumber, Password); U DONT DO LIKE THIS
+    await db.auth.register(Email, Password, {
+      userName,
+      phoneNumber: PhoneNumber,
+    });
+    if (db.auth.isAuthenticated()) {
+      setUser(db.auth.getUser());
     }
   };
 
+  const Login = async (Email, Password) => {
+    await db.login(Email, Password);
+    if (db.isAuthenticated()) {
+      setUser(db.user);
+    }
+  };
 
-   return(
-<Authcontext.Provider value={{user, Login, register, Logout}}>
-       {children}
-       </Authcontext.Provider>
-     )
- }
- 
- export const useAuth = ()=> useContext(Authcontext);
- 
+  const Logout = async () => {
+    await db.logout();
+    setUser(null);
+  };
+
+  return (
+    <Authcontext.Provider value={{ user, Login, register, Logout }}>
+      {children}
+    </Authcontext.Provider>
+  );
+}
+
+export const useAuth = () => useContext(Authcontext);
