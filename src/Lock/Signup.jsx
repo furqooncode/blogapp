@@ -11,16 +11,16 @@ const [userName, setuserName] = useState('')
 const [Email, setEmail] = useState('')
 const [PhoneNumber, setPhoneNumber] = useState('')
 const [Password, setPassword] = useState('')
-const [ConfirmPassword, setConfirmPassword] = useState('')
+
   const navigate = useNavigate();
 async function handlesubmit(e){
     e.preventDefault()
   try{
-    await register(userName, Email, PhoneNumber, Password, ConfirmPassword);
+    await register(userName, Email, PhoneNumber, Password);
     alert('successfully registered')
     navigate("/Login")
   }catch(error){
-    alert(error)
+    alert(error.message)
   }
   }
   return(
@@ -64,13 +64,7 @@ async function handlesubmit(e){
         required
         />
         
-       <span>confirm password</span>
-        <input 
-        type="password"
-        placeholder="confirm password"
-        onChange={(e) => setConfirmPassword(e.target.value)} 
-        required
-        />
+     
         
         <button style={{
           width:'100%',

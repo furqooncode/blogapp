@@ -16,9 +16,9 @@ export const Authcontext = createContext();
   }, []);
   
   
-  const register = async(userName, Email, PhoneNumber, Password, ConfirmPassword) =>{
+  const register = async(userName, Email, PhoneNumber, Password) =>{
     try{
-     await db.register(userName, Email, PhoneNumber, Password, ConfirmPassword);
+     await db.register(userName, Email, PhoneNumber, Password);
     if(db.isAuthenticated()){
       setUser(db.user)
     }
