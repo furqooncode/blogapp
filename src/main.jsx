@@ -16,6 +16,3 @@ createRoot(document.getElementById('root')).render(
 )
 
 
-if (import.meta.env.DEV) {
-  import('eruda').then(eruda => eruda.init());
-}

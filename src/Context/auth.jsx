@@ -18,7 +18,7 @@ export const Authcontext = createContext();
   
   const register = async(userName, Email, PhoneNumber, Password, ConfirmPassword) =>{
     try{
-    return await db.register(userName, Email, PhoneNumber, Password, ConfirmPassword);
+     await db.register(userName, Email, PhoneNumber, Password, ConfirmPassword);
     if(db.isAuthenticated()){
       setUser(db.user)
     }
@@ -29,7 +29,7 @@ export const Authcontext = createContext();
   
   const Login = async(Email, Password)=>{
    try{
-     return await db.login(Email, Password);
+      await db.login(Email, Password);
      if(db.isAuthenticated()){
        setUser(db.user)
      }
@@ -40,18 +40,20 @@ export const Authcontext = createContext();
   
   const Logout = async () => {
     try {
-     return await db.logout();
+      await db.logout();
       setUser(null);
     } catch (error) {
       console.log(error);
     }
   };
+
+
    return(
-     <Authcontext.Provider value={{user, Login, register, Logout}}>
+<Authcontext.Provider value={{user, Login, register, Logout}}>
        {children}
        </Authcontext.Provider>
      )
  }
  
- export const useAuth = ()=> useContext(Authcontext)
+ export const useAuth = ()=> useContext(Authcontext);
  
