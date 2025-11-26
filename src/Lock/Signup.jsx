@@ -15,13 +15,11 @@ const [Password, setPassword] = useState('')
   const navigate = useNavigate();
 async function handlesubmit(e){
     e.preventDefault()
-  try{
     await register(userName, Email, PhoneNumber, Password);
     alert('successfully registered')
     navigate("/Login")
   }catch(error){
     alert(error.message)
-  }
   }
   return(
     <div className="login">
