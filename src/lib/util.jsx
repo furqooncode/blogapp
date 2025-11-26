@@ -5,5 +5,4 @@ const db = new Cocobase({
   projectId: import.meta.env.VITE_COCOBASE_PROJECT_ID,
 });
 
-db.initAuth();
 export default db;
